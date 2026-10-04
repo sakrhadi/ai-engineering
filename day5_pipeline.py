@@ -101,3 +101,4 @@ new_employee = pd.DataFrame([{
 prediction = pipeline.predict(new_employee)
 
 print("\nPredicted salary:", prediction[0])
+print ("\nDay 5 completed successfully!")
