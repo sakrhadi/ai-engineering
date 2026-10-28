@@ -5,7 +5,14 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import (
+    accuracy_score,
+    precision_score,
+    recall_score,
+    f1_score,
+    classification_report,
+    confusion_matrix
+)
 
 # Load data
 df = pd.read_csv("customers.csv")
@@ -38,6 +45,16 @@ accuracy = accuracy_score(y_test, predictions)
 
 print("Model training completed!")
 print("Accuracy:", accuracy)
+
+print("Precision:", precision_score(y_test, predictions, zero_division=0))
+print("Recall:", recall_score(y_test, predictions, zero_division=0))
+print("F1-score:", f1_score(y_test, predictions, zero_division=0))
+
+print("\nConfusion Matrix:")
+print(confusion_matrix(y_test, predictions))
+
+print("\nClassification Report:")
+print(classification_report(y_test, predictions, zero_division=0))
 
 # Save the trained model
 joblib.dump(model, "customer_churn_model.pkl")
